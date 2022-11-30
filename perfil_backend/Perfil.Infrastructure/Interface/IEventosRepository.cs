@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Perfil.Infrastructure.Interface
 {
-    interface IEventosRepository
+    public interface IEventosRepository
     {
         List<Eventos> ListarEventos();
         Eventos GetById(int id);

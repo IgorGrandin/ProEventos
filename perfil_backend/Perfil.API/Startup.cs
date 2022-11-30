@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -7,6 +8,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Perfil.Core.AutoMapper;
+using Perfil.Core.Interfaces;
+using Perfil.Core.Services;
+using Perfil.Infrastructure.DB.SQL.Data;
+using Perfil.Infrastructure.Interface;
 using Perfil.Infrastructure.Models;
 using System;
 using System.Collections.Generic;
@@ -28,6 +34,14 @@ namespace Perfil.API
         public void ConfigureServices(IServiceCollection services)
         {
 
+            #region ' Application Services '     
+            /*Services cadastrados*/
+            services.AddScoped<IEventosService, EventosService>();
+
+            /*Repositórios padrões do Framework para SQL*/
+            services.AddScoped<IEventosRepository, DapperEventosRepository>();
+            #endregion
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -48,6 +62,17 @@ namespace Perfil.API
                     options.SQLServerConnectionString = Configuration.GetSection("ConnectionStrings:SqlServer").Value;
                 }
             });
+            #endregion
+
+            #region ' AutoMapper '
+            // Auto Mapper Configurations
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MappingProfile());
+            });
+
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
             #endregion
         }
 

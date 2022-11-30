@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Perfil.Core.Models;
+using Perfil.Core.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,52 +14,48 @@ namespace Perfil.API.Controllers
     public class EventoController : ControllerBase
     {
 
-
         private readonly ILogger<EventoController> _logger;
+        private readonly IEventosService _eventosService;
 
-        public EventoController(ILogger<EventoController> logger)
+        public EventoController(ILogger<EventoController> logger, IEventosService eventosService)
         {
             _logger = logger;
+            _eventosService = eventosService;
         }
 
-        public IEnumerable<EventosModel> _evento = new EventosModel[]
-        {
-            new EventosModel(){
-                EventoId = 1,
-                Tema = "Angular e ASP.NET",
-                Local = "São Paulo",
-                Lote = "1° Lote",
-                QtdPessoas = 250,
-                DataEvento = DateTime.Now.AddDays(2).ToString("dd/MM/yyyy"),
-                ImagemURL = "foto.png"
-                },
-            new EventosModel(){
-                EventoId = 2,
-                Tema = "Teclado",
-                Local = "São Paulo",
-                Lote = "2° Lote",
-                QtdPessoas = 500,
-                DataEvento = DateTime.Now.AddDays(3).ToString("dd/MM/yyyy"),
-                ImagemURL = "fotoTeclado.png"
-                }
-        };
-
+        #region ' Listar Todos os Eventos '
+        /// <summary>
+        /// Método responsável por listar todos os Eventos cadastrados
+        /// </summary>
         [HttpGet]
-        public IEnumerable<EventosModel> Get()
+        //[Authorize(AuthenticationSchemes = "TokenAuthenticationScheme")]
+        public IActionResult ListarEventos()
         {
-            return _evento;
-        }
+            List<EventosModel> listaEventos = _eventosService.ListarEventos();
 
+            return Ok(listaEventos);
+        }
+        #endregion
+
+        #region ' Listar Eventos por Id '
+        /// <summary>
+        /// Método responsável por filtras os eventos por Id
+        /// </summary>
         [HttpGet("{id}")]
-        public IEnumerable<EventosModel> GetById(int id)
+        //[Authorize(AuthenticationSchemes = "TokenAuthenticationScheme")]
+        public IActionResult GetById(int id)
         {
-            return _evento.Where(evento => evento.EventoId == id );
+            try
+            {
+                var evento = _eventosService.GetById(id);
+                return Ok(evento);
+            }
+            catch (Exception e)
+            {
+                return BadRequest("Error : " + e.Message);
+            }
         }
+        #endregion
 
-        [HttpPost("UpdateEvento")]
-        public IActionResult Post([FromBody] string str)
-        {
-            return Ok();
-        }
     }
 }

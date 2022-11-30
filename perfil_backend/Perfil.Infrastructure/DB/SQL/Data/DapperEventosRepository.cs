@@ -1,4 +1,5 @@
-﻿using Dapper;
+﻿using _Frameworkni.Infrastructure.Models;
+using Dapper;
 using Microsoft.Extensions.Options;
 using Perfil.Infrastructure.Entities;
 using Perfil.Infrastructure.Interface;
@@ -22,7 +23,7 @@ namespace Perfil.Infrastructure.DB.SQL.Data
         #region ' ListarEventos '
         public List<Eventos> ListarEventos() 
         {
-            List<Eventos> listaEventos = null;
+            List<Eventos> listaEventos;
 
             try
             {
@@ -42,8 +43,15 @@ namespace Perfil.Infrastructure.DB.SQL.Data
         #region 'Metodo Get Evento By Id'
         public Eventos GetById(int id)
         {
-            string query = "SELECT * FROM USUARIO WHERE EventoId = @Id";
-            return GetEvent(query, id.ToString());
+            try
+            {
+                string query = $"SELECT * FROM {TabelasModel.Tabela_Eventos} WHERE EventoId = @Id";
+                return GetEvent(query, id.ToString());
+            }
+            catch (Exception e)
+            {
+                throw new ApplicationException(e.Message);
+            }
         }
 
         private Eventos GetEvent(string query, string id)

@@ -1,4 +1,5 @@
-﻿using Perfil.Infrastructure.Entities;
+﻿using Perfil.Core.Models;
+using Perfil.Infrastructure.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Perfil.Core.Interfaces
 {
-    interface IEventosService
+    public interface IEventosService
     {
-        List<Eventos> ListarEventos();
+        List<EventosModel> ListarEventos();
         Eventos GetById(int id);
     }
 }
