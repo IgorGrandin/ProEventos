@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Perfil.Core.Models
+namespace Perfil.Infrastructure.Entities
 {
-    public class Evento
+    public class Eventos
     {
         public int EventoId { get; set; }
         public string Local { get; set; }

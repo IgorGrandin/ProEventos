@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Perfil.Core\Perfil.Core.csproj" />
+    <ProjectReference Include="..\Perfil.Infrastructure\Perfil.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

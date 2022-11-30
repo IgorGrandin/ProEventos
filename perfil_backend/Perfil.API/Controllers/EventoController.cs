@@ -21,9 +21,9 @@ namespace Perfil.API.Controllers
             _logger = logger;
         }
 
-        public IEnumerable<Evento> _evento = new Evento[]
+        public IEnumerable<EventosModel> _evento = new EventosModel[]
         {
-            new Evento(){
+            new EventosModel(){
                 EventoId = 1,
                 Tema = "Angular e ASP.NET",
                 Local = "São Paulo",
@@ -32,7 +32,7 @@ namespace Perfil.API.Controllers
                 DataEvento = DateTime.Now.AddDays(2).ToString("dd/MM/yyyy"),
                 ImagemURL = "foto.png"
                 },
-            new Evento(){
+            new EventosModel(){
                 EventoId = 2,
                 Tema = "Teclado",
                 Local = "São Paulo",
@@ -44,13 +44,13 @@ namespace Perfil.API.Controllers
         };
 
         [HttpGet]
-        public IEnumerable<Evento> Get()
+        public IEnumerable<EventosModel> Get()
         {
             return _evento;
         }
 
         [HttpGet("{id}")]
-        public IEnumerable<Evento> GetById(int id)
+        public IEnumerable<EventosModel> GetById(int id)
         {
             return _evento.Where(evento => evento.EventoId == id );
         }
