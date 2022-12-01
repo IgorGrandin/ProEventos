@@ -1,3 +1,4 @@
+import { UserService } from './../../services/eventos.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,24 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./eventos.component.scss'],
 })
 export class EventosComponent implements OnInit {
+  public eventos: any;
 
-  public eventos: any = [
-    {
-      Tema: 'Angular',
-      Local: 'São Paulo'
-    },
-    {
-      Tema: 'Javascript',
-      Local: 'Belo Horizonte'
-    },
-    {
-      Tema: 'CSS',
-      Local: 'Rio de Janeiro'
-    }
-  ]
+  constructor(private userService: UserService) {}
 
-  constructor() { }
-
-  ngOnInit() {}
-
+  ngOnInit() {
+    console.log("stored:");
+    this.userService.getEventos(this.eventos).then((storedEventos) => {
+      this.eventos = storedEventos;
+      console.log(this.eventos);
+    });
+  }
 }

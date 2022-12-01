@@ -1,3 +1,4 @@
+import { EventosComponent } from './../../components/eventos/eventos.component';
 import { MyModules } from './../../modules/my.modules';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -9,13 +10,13 @@ import { HomePageRoutingModule } from './home-routing.module';
 
 
 @NgModule({
-    declarations: [HomePage],
+    declarations: [HomePage, EventosComponent],
     imports: [
         CommonModule,
         FormsModule,
         IonicModule,
         HomePageRoutingModule,
         MyModules
-    ]
+    ],
 })
 export class HomePageModule {}
