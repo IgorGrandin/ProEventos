@@ -11,13 +11,13 @@ namespace Perfil.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class EventoController : ControllerBase
+    public class EventosController : ControllerBase
     {
 
-        private readonly ILogger<EventoController> _logger;
+        private readonly ILogger<EventosController> _logger;
         private readonly IEventosService _eventosService;
 
-        public EventoController(ILogger<EventoController> logger, IEventosService eventosService)
+        public EventosController(ILogger<EventosController> logger, IEventosService eventosService)
         {
             _logger = logger;
             _eventosService = eventosService;

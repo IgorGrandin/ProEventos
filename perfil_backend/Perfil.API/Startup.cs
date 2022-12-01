@@ -34,6 +34,16 @@ namespace Perfil.API
         public void ConfigureServices(IServiceCollection services)
         {
 
+            #region ' Cors '
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                            builder => builder.AllowAnyOrigin()
+                                .AllowAnyMethod()
+                                .AllowAnyHeader());
+            });
+            #endregion
+
             #region ' Application Services '     
             /*Services cadastrados*/
             services.AddScoped<IEventosService, EventosService>();
@@ -89,6 +99,8 @@ namespace Perfil.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors("CorsPolicy");
 
             app.UseAuthorization();
 
