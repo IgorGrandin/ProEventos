@@ -1,6 +1,27 @@
-<h1>Eventos: </h1>
-<div *ngFor="let evento of eventos">
-  <p><b>Tema: </b>{{ evento.tema }}</p>
-  <p><b>Local: </b>{{ evento.local }}</p>
-  <hr>
-</div>
+<h1>Eventos:</h1>
+
+<ion-grid>
+  <ion-row class="gridHeader" padd>
+    <ion-col>#</ion-col>
+    <ion-col>Imagem</ion-col>
+    <ion-col>Tema</ion-col>
+    <ion-col>Local</ion-col>
+    <ion-col>Data</ion-col>
+    <ion-col>Qtd Pessoas</ion-col>
+    <ion-col>Lote</ion-col>
+    <ion-col>Opções</ion-col>
+  </ion-row>
+  <div *ngIf="eventos && eventos.length">
+    <ion-row *ngFor="let evento of eventos">
+      <ion-col>{{ evento.eventoId }}</ion-col>
+      <ion-col>{{ evento.imagemURL }}</ion-col>
+      <ion-col>{{ evento.tema }}</ion-col>
+      <ion-col>{{ evento.local }}</ion-col>
+      <ion-col>{{ evento.dataEvento }}</ion-col>
+      <ion-col>{{ evento.qtdPessoas }}</ion-col>
+      <ion-col>{{ evento.lote }}</ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+  </div>
+  <div *ngIf="!eventos.length" style="text-align: center;"><h4>Nenhum Evento encontrado!</h4></div>
+</ion-grid>

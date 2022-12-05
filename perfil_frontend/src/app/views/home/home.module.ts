@@ -1,3 +1,4 @@
+import { NavComponent } from './../../components/nav/nav.component';
 import { EventosComponent } from './../../components/eventos/eventos.component';
 import { MyModules } from './../../modules/my.modules';
 import { NgModule } from '@angular/core';
@@ -10,7 +11,7 @@ import { HomePageRoutingModule } from './home-routing.module';
 
 
 @NgModule({
-    declarations: [HomePage, EventosComponent],
+    declarations: [HomePage, EventosComponent, NavComponent],
     imports: [
         CommonModule,
         FormsModule,

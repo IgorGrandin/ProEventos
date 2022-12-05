@@ -1,10 +1,4 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Novo Projeto
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-nav></app-nav>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
@@ -13,8 +7,24 @@
     </ion-toolbar>
   </ion-header>
 
+  <div>
+    <label for="gsearch">Search Google:</label>
+    <input type="search" id="gsearch" name="gsearch" />
+  </div>
+
   <div id="container">
     <app-eventos></app-eventos>
-    <app-palestrantes></app-palestrantes>
   </div>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-segment value="all">
+      <ion-segment-button value="eventos"> Eventos </ion-segment-button>
+      <ion-segment-button value="palestrantes">
+        Palestrantes
+      </ion-segment-button>
+      <ion-segment-button value="contatos"> Contatos </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-footer>
