@@ -15,12 +15,12 @@ namespace Perfil.Core.Services
 {
     public class EventosService : IEventosService
     {
-        private readonly IEventosRepository _eventosRepository;
+        private readonly IPerfilRepository _eventosRepository;
         private readonly IMapper _mapeador;
         private readonly IOptions<Settings> _settings;
 
         public EventosService(
-            IEventosRepository eventosRepository,
+            IPerfilRepository eventosRepository,
             IMapper mapeador,
             IOptions<Settings> settings)
         {

@@ -2,8 +2,8 @@
 {
     public static class TabelasModel
     {
-        public const string Tabela_Eventos = "Eventos";
+        public const string Tabela_Eventos = "Evento";
 
-        public const string Campos_Insert_Eventos = "Tema, Local, Lote, QtdPessoas, DataEvento, ImagemURL";
+        public const string Campos_Insert_Eventos = "Tema, Local, QtdPessoas, DataEvento, ImagemURL, Telefone, Email";
     }
 }

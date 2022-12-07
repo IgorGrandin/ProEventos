@@ -49,7 +49,7 @@ namespace Perfil.API
             services.AddScoped<IEventosService, EventosService>();
 
             /*Repositórios padrões do Framework para SQL*/
-            services.AddScoped<IEventosRepository, DapperEventosRepository>();
+            services.AddScoped<IPerfilRepository, DapperEventosRepository>();
             #endregion
 
             services.AddControllers();
