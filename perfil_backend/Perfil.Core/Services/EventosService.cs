@@ -40,7 +40,7 @@ namespace Perfil.Core.Services
         }
         #endregion
 
-        #region ' Listar Todos os Eventos '
+        #region ' Listar Evento por ID '
         public Eventos GetById(int id)
         {
             return _eventosRepository.GetById(id);
